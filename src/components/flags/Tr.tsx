@@ -1,0 +1,23 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const Tr = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 512 512"
+    {...props}
+  >
+    <mask id="tr_svg__a">
+      <path fill="#fff" d="M0 0h512v512H0z" />
+    </mask>
+    <g mask="url(#tr_svg__a)">
+      <path fill="#d80027" d="M0 0h512v512H0z" />
+      <path
+        fill="#eee"
+        d="M208 115a141 141 0 1 0 106 242q-25 13-54 13a114 114 0 1 1 54-215 141 141 0 0 0-106-40m142 67v56l-54 18 54 17v57l33-46 54 18-33-46 33-46-54 18z"
+      />
+    </g>
+  </svg>
+);
+export default Tr;

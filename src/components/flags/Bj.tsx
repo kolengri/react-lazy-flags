@@ -1,0 +1,21 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const Bj = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 512 512"
+    {...props}
+  >
+    <mask id="bj_svg__a">
+      <path fill="#fff" d="M0 0h512v512H0z" />
+    </mask>
+    <g mask="url(#bj_svg__a)">
+      <path fill="#6da544" d="M0 0h189.2l54 257.6-54 254.4H0z" />
+      <path fill="#ffda44" d="M189.2 0H512v256l-159 53.5L189.1 256z" />
+      <path fill="#d80027" d="M189.2 256H512v256H189.2z" />
+    </g>
+  </svg>
+);
+export default Bj;

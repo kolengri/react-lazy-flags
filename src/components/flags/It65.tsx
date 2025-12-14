@@ -1,0 +1,28 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const It65 = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 512 512"
+    {...props}
+  >
+    <mask id="it-65_svg__a">
+      <path fill="#fff" d="M0 0h512v512H0z" />
+    </mask>
+    <g mask="url(#it-65_svg__a)">
+      <path fill="#d80027" d="M0 0h512v512H0z" />
+      <path
+        fill="#0052b4"
+        d="M256 404.4S368 378.7 368 293v-77l-88 80-78 86c27.3 16.3 54 22.4 54 22.4"
+      />
+      <path fill="#eee" d="M144 152v141a97 97 0 0 0 1.6 17.4L224 240l80-88z" />
+      <path
+        fill="#6da544"
+        d="M304 152 145.5 310.5c6.5 34 31.7 57 56.4 71.6l166-166v-64h-64Z"
+      />
+    </g>
+  </svg>
+);
+export default It65;

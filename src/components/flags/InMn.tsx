@@ -1,0 +1,25 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const InMn = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 512 512"
+    {...props}
+  >
+    <mask id="in-mn_svg__a">
+      <path fill="#fff" d="M0 0h512v512H0z" />
+    </mask>
+    <g mask="url(#in-mn_svg__a)">
+      <path fill="#d80027" d="M0 0h512v73L256 96 0 73Z" />
+      <path fill="#eee" d="M0 73h512v73l-256 23L0 146Z" />
+      <path fill="#333" d="M0 146h512v73l-256 23L0 219Z" />
+      <path fill="#ffda44" d="M0 219h512v74l-256 22L0 293Z" />
+      <path fill="#4a1f63" d="M0 293h512v73l-256 23L0 366Z" />
+      <path fill="#338af3" d="M0 366h512v73l-256 23L0 439Z" />
+      <path fill="#6da544" d="M0 439h512v73H0z" />
+    </g>
+  </svg>
+);
+export default InMn;

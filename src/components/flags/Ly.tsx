@@ -1,0 +1,25 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const Ly = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 512 512"
+    {...props}
+  >
+    <mask id="ly_svg__a">
+      <path fill="#fff" d="M0 0h512v512H0z" />
+    </mask>
+    <g mask="url(#ly_svg__a)">
+      <path fill="#333" d="m0 144 256-32 256 32v224l-256 32L0 368Z" />
+      <path fill="#d80027" d="M0 0h512v144H0Z" />
+      <path fill="#496e2d" d="M0 368h512v144H0Z" />
+      <path
+        fill="#eee"
+        d="M226 167a89 89 0 1 0 67 153 72 72 0 0 1-35 8 72 72 0 1 1 35-136 89 89 0 0 0-67-25m90 42v36l-34 11 34 11v36l21-29 34 11-21-29 21-29-34 11z"
+      />
+    </g>
+  </svg>
+);
+export default Ly;
