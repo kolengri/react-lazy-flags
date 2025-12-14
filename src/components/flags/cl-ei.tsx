@@ -1,0 +1,23 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const SvgClEi = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 512 512"
+    {...props}
+  >
+    <mask id="cl-ei_svg__a">
+      <path fill="#fff" d="M0 0h512v512H0z" />
+    </mask>
+    <g mask="url(#cl-ei_svg__a)">
+      <path fill="#eee" d="M0 0h512v512H0z" />
+      <path
+        fill="#d80027"
+        d="M334 211.5v22.2h30.5a134.2 134.2 0 0 1-49.5 42 27.7 27.7 0 0 0-47.2 13.2 135 135 0 0 1-23.6 0 27.8 27.8 0 0 0-47.2-13.2 134.2 134.2 0 0 1-49.5-42h30.6v-22.2h-78a155.8 155.8 0 0 0 311.7 0z"
+      />
+    </g>
+  </svg>
+);
+export default SvgClEi;

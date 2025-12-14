@@ -45,3 +45,4 @@ echo "   - 3 flags bundle: $SIZE_3"
 echo "   - 10 flags bundle: $SIZE_10"
 echo ""
 echo "✅ Analysis complete!"
+

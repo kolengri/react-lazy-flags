@@ -1,0 +1,24 @@
+import * as React from "react";
+import type { SVGProps } from "react";
+const SvgQu = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 512 512"
+    {...props}
+  >
+    <mask id="qu_svg__a">
+      <path fill="#fff" d="M0 0h512v512H0z" />
+    </mask>
+    <g mask="url(#qu_svg__a)">
+      <path fill="#4a1f63" d="M0 512h512v-70l-256-32L0 442Z" />
+      <path fill="#0052b4" d="M0 442h512v-70l-256-32L0 372Z" />
+      <path fill="#d80027" d="M0 0h512v70l-256 32L0 70Z" />
+      <path fill="#ffda44" d="M0 70h512v70l-256 32L0 140Z" />
+      <path fill="#eee" d="M0 140h512v70l-32 46 32 46v70H0v-70l32-46-32-46Z" />
+      <path fill="#496e2d" d="M0 210h512v92H0z" />
+    </g>
+  </svg>
+);
+export default SvgQu;

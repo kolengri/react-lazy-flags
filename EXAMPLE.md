@@ -37,3 +37,4 @@ Bun natively supports TypeScript, so no additional configuration is needed.
 ## Note
 
 Since the package exports TypeScript source files, make sure your project's bundler is configured to handle `.ts` and `.tsx` files from `node_modules`.
+

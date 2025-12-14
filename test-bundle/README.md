@@ -87,3 +87,4 @@ If lazy loading doesn't work:
 - Verify that `React.lazy()` is used correctly
 - Check that dynamic imports are not being bundled together
 - Ensure Suspense boundaries are set up correctly
+

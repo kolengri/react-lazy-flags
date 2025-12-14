@@ -42,3 +42,4 @@ The package includes:
 - Consumers' bundlers will handle compilation
 - Lazy loading works because all flag components are separate files
 - Make sure `src/components` directory structure is preserved in the package
+

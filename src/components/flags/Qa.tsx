@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const Qa = (props: SVGProps<SVGSVGElement>) => (
+const SvgQa = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -20,4 +20,4 @@ const Qa = (props: SVGProps<SVGSVGElement>) => (
     </g>
   </svg>
 );
-export default Qa;
+export default SvgQa;

@@ -21,16 +21,13 @@ const results = await Promise.all(
     const fileName = basename(file, extname(file));
 
     // Convert filename to PascalCase component name
-    const componentName = fileName
-      .split(/[-_]/)
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join("");
+    const componentName = fileName;
 
     const outputPath = join(outputDir, `${componentName}.tsx`);
 
     // Generate component using svgr
     try {
-      await $`bunx svgr --typescript --icon --replace-attr-values "#000=currentColor" --out-dir ${outputDir} --filename-case pascal -- ${filePath}`.quiet();
+      await $`bunx svgr --typescript --icon --replace-attr-values "#000=currentColor" --out-dir ${outputDir} --filename-case kebab -- ${filePath}`.quiet();
 
       // Read and update the generated file
       if (await Bun.file(outputPath).exists()) {

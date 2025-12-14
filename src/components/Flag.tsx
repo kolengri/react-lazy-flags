@@ -1,28 +1,42 @@
 import { lazy, Suspense, type ComponentType } from "react";
 import type { SVGProps } from "react";
-import { Skeleton } from "./flags/Skeleton";
-import { Fallback } from "./flags/Fallback";
-import { flagComponentLoaders, type FlagComponentName } from "./flags";
+import { Skeleton } from "./skeleton";
+import { Fallback } from "./fallback";
+import {
+  flagComponentLoaders,
+  type FlagComponentName,
+  type FlagCode,
+} from "./flags";
 
-// Convert flag code to component name (PascalCase)
-function flagCodeToComponentName(code: string): string {
-  return code
-    .split(/[-_]/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join("");
-}
-
-// Cache for lazy components to avoid re-creating them
+/**
+ * Cache for lazy components to avoid re-creating them.
+ * This improves performance by reusing already loaded components.
+ */
 const componentCache = new Map<
   string,
   ComponentType<SVGProps<SVGSVGElement>>
 >();
 
-// Get or create lazy component for a flag code
+/**
+ * Gets or creates a lazy-loaded flag component for the given flag code.
+ *
+ * This function implements a caching mechanism to avoid re-creating lazy components
+ * for the same flag code. If a component loader doesn't exist for the code,
+ * it returns a fallback component. If loading fails, it also returns a fallback.
+ *
+ * @param code - The flag code (e.g., "us", "gb", "fr")
+ * @returns A React component that renders the flag SVG
+ *
+ * @example
+ * ```tsx
+ * const UsFlag = getLazyFlagComponent("us");
+ * <UsFlag width={100} height={100} />
+ * ```
+ */
 function getLazyFlagComponent(
-  code: string
+  code: FlagCode
 ): ComponentType<SVGProps<SVGSVGElement>> {
-  const componentName = flagCodeToComponentName(code) as FlagComponentName;
+  const componentName = code;
 
   if (componentCache.has(componentName)) {
     return componentCache.get(componentName)!;
@@ -67,11 +81,59 @@ function getLazyFlagComponent(
   return LazyComponent;
 }
 
+/**
+ * Props for the Flag component.
+ *
+ * @extends SVGProps<SVGSVGElement> - All standard SVG props are supported
+ */
 export interface FlagProps extends SVGProps<SVGSVGElement> {
-  code: string;
+  /**
+   * The flag code to display (e.g., "us", "gb", "fr").
+   * Must be a valid FlagCode from the flags index.
+   */
+  code: FlagCode;
+  /**
+   * Optional custom fallback component to show while the flag is loading.
+   * If not provided, a default Skeleton component will be used.
+   */
   fallback?: React.ReactNode;
 }
 
+/**
+ * Flag component that renders country flags with lazy loading support.
+ *
+ * This component uses React.lazy() to dynamically load flag components only when needed,
+ * improving initial bundle size. It wraps the lazy component in a Suspense boundary
+ * to handle loading states gracefully.
+ *
+ * @param props - Flag component props
+ * @param props.code - The flag code to display (required)
+ * @param props.fallback - Optional custom fallback component (defaults to Skeleton)
+ * @param props - All other props are passed through to the underlying SVG element
+ *
+ * @returns A React component that renders the flag with lazy loading
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <Flag code="us" width={100} height={100} />
+ *
+ * // With custom fallback
+ * <Flag
+ *   code="gb"
+ *   width={200}
+ *   height={150}
+ *   fallback={<div>Loading...</div>}
+ * />
+ *
+ * // With SVG props
+ * <Flag
+ *   code="fr"
+ *   className="flag-icon"
+ *   style={{ border: "1px solid #ccc" }}
+ * />
+ * ```
+ */
 export function Flag({ code, fallback, ...props }: FlagProps) {
   const LazyFlag = getLazyFlagComponent(code);
 

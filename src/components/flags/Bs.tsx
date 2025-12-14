@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const Bs = (props: SVGProps<SVGSVGElement>) => (
+const SvgBs = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -18,4 +18,4 @@ const Bs = (props: SVGProps<SVGSVGElement>) => (
     </g>
   </svg>
 );
-export default Bs;
+export default SvgBs;
