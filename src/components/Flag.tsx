@@ -2,6 +2,7 @@ import { lazy, Suspense, type ComponentType } from "react";
 import type { SVGProps } from "react";
 import { Skeleton } from "./flags/Skeleton";
 import { Fallback } from "./flags/Fallback";
+import { flagComponentLoaders, type FlagComponentName } from "./flags";
 
 // Convert flag code to component name (PascalCase)
 function flagCodeToComponentName(code: string): string {
@@ -21,15 +22,32 @@ const componentCache = new Map<
 function getLazyFlagComponent(
   code: string
 ): ComponentType<SVGProps<SVGSVGElement>> {
-  const componentName = flagCodeToComponentName(code);
+  const componentName = flagCodeToComponentName(code) as FlagComponentName;
 
   if (componentCache.has(componentName)) {
     return componentCache.get(componentName)!;
   }
 
+  // Check if component loader exists
+  const loader = flagComponentLoaders[componentName];
+  if (!loader) {
+    console.warn(
+      `Flag component not found for code: ${code} (component: ${componentName})`
+    );
+    // Return a fallback component directly (not lazy)
+    const FallbackComponent = (props: SVGProps<SVGSVGElement>) => (
+      <Fallback code={code} {...props} />
+    );
+    componentCache.set(componentName, FallbackComponent);
+    return FallbackComponent;
+  }
+
+  // Create lazy component using the loader function
+  // This ensures true lazy loading - component is only loaded when needed
   const LazyComponent = lazy(async () => {
     try {
-      const module = await import(`./flags/${componentName}.tsx`);
+      // Call the loader function to dynamically import the component
+      const module = await loader();
       return module;
     } catch (error) {
       console.error(
