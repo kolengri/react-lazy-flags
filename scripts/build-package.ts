@@ -30,16 +30,27 @@ async function fixImportsInFile(filePath: string) {
   
   // Replace .tsx and .ts extensions in imports with .js
   // This handles both relative and dynamic imports
-  const fixed = content
-    .replace(/from\s+['"](\.\/[^'"]*?)\.tsx?['"]/g, (match, path) => {
+  // Also handles imports without extensions (adds .js for ESM)
+  let fixed = content
+    .replace(/from\s+['"](\.\/[^'"]*?)\.tsx?['"]/g, (match) => {
       return match.replace(/\.tsx?/, ".js");
     })
-    .replace(/import\s*\(['"](\.\/[^'"]*?)\.tsx?['"]\)/g, (match, path) => {
+    .replace(/import\s*\(['"](\.\/[^'"]*?)\.tsx?['"]\)/g, (match) => {
       return match.replace(/\.tsx?/, ".js");
     })
-    .replace(/require\s*\(['"](\.\/[^'"]*?)\.tsx?['"]\)/g, (match, path) => {
+    .replace(/require\s*\(['"](\.\/[^'"]*?)\.tsx?['"]\)/g, (match) => {
       return match.replace(/\.tsx?/, ".js");
     });
+  
+  // Add .js extension to dynamic imports without extension (for ESM compatibility)
+  // Match: import("./something") where something doesn't have extension
+  fixed = fixed.replace(/import\s*\(['"](\.\/[^'"]+?)['"]\)/g, (match, path) => {
+    // Only add .js if path doesn't already have an extension
+    if (!path.match(/\.(js|ts|tsx|json)$/)) {
+      return match.replace(path, `${path}.js`);
+    }
+    return match;
+  });
 
   if (content !== fixed) {
     await writeFile(filePath, fixed, "utf-8");
