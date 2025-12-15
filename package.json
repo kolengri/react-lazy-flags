@@ -3,13 +3,13 @@
   "version": "0.1.2",
   "description": "React component library for country flags with lazy loading support",
   "type": "module",
-  "main": "./dist/index.ts",
-  "module": "./dist/index.ts",
-  "types": "./dist/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.ts",
-      "types": "./dist/index.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
     "./package.json": "./package.json"
   },
@@ -61,6 +61,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/bun": "latest",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "typescript": "^5.0.0"
   }
 }
